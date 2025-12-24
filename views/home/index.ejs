@@ -1,0 +1,106 @@
+<%- include('../partials/header') %>
+
+    <div class="hero-wrapper">
+        <!-- Overlay for better text readability (optional, subtle dark gradient) -->
+        <div class="hero-overlay" style="background: rgba(0,0,0,0.1);"></div>
+
+        <!-- Sale Card -->
+        <div class="sale-card">
+            <h1 class="sale-title">SALE</h1>
+            <h2 class="sale-subtitle">SUPER OFFER</h2>
+
+            <p class="sale-text">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
+                aliquam.
+            </p>
+
+            <a href="/category/Men" class="btn btn-shop-copper">SHOP NOW</a>
+        </div>
+
+        <!-- Social Sidebar -->
+        <div class="social-sidebar">
+            <a href="#" class="social-icon text-decoration-none"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-icon text-decoration-none"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="social-icon text-decoration-none"><i class="bi bi-instagram"></i></a>
+        </div>
+
+        <!-- Pointer Marker -->
+        <div class="pointer-marker">
+            <div class="pointer-dot">
+                <div class="pointer-inner"></div>
+            </div>
+            <div class="pointer-line"></div>
+            <div class="pointer-text">NEW SHOES</div>
+        </div>
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <!-- Featured Items Section -->
+    <div class="container-fluid py-5 bg-light">
+        <div class="text-center mb-5">
+            <h2 class="section-title">FEATURED ITEMS</h2>
+            <div class="title-underline mx-auto"></div>
+        </div>
+
+        <div class="container">
+            <!-- Parent Card Wrapper -->
+            <div class="featured-parent-card p-5">
+                <div class="row g-4">
+                    <% if (products && products.length> 0) { %>
+                        <% products.forEach(function(item) { %>
+                            <div class="col-md-3 col-sm-6">
+                                <a href="/product/<%= item.id %>" class="text-decoration-none text-dark">
+                                    <div class="card product-card h-100">
+                                        <div class="card-img-wrapper position-relative text-center p-4">
+                                            <img src="<%= item.imageUrl %>" class="card-img-top img-fluid"
+                                                alt="<%= item.name %>" style="max-height: 200px; object-fit: contain;">
+                                            <span
+                                                class="btn btn-sm btn-light position-absolute top-0 end-0 m-2 rounded-circle shadow-sm">
+                                                <i class="bi bi-heart"></i>
+                                            </span>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title text-uppercase fw-bold" style="font-size: 0.9rem;">
+                                                <%= item.name %>
+                                            </h5>
+                                            <p class="card-text fw-bold text-muted">$<%= item.price %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <% }); %>
+                                <% } else { %>
+                                    <div class="col-12 text-center text-muted">No featured items available.</div>
+                                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Promotional Banner (Nike Joggers) -->
+    <div class="container-fluid p-0">
+        <div class="promo-banner position-relative d-flex align-items-center justify-content-start ps-5"
+            style="background: url('https://static.nike.com/a/images/f_auto/dpr_3.0,cs_srgb/w_500,c_limit/g1ljiszo4qhthfpluzbt/nike-joyride.jpg') no-repeat center center/cover; height: 500px;">
+
+            <div class="promo-overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.5);">
+            </div>
+
+            <div class="promo-content position-relative z-index-1 text-white ms-5 p-4" style="max-width: 500px;">
+                <span class="badge bg-danger mb-3 px-3 py-2">LIMITED TIME OFFER</span>
+                <h2 class="display-4 fw-bold mb-2">50% DISCOUNT</h2>
+                <h3 class="h2 fw-light mb-4 text-uppercase">ON NIKE JOGGERS</h3>
+                <p class="mb-4 text-white-50">Experience ultimate comfort and style with our premium collection. Don't
+                    miss out on this exclusive deal.</p>
+                <a href="/category/Joggers" class="btn btn-shop-copper btn-lg px-5">SHOP NOW</a>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer') %>
