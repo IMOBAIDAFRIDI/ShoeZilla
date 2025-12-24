@@ -1,0 +1,100 @@
+
+@model IEnumerable<ShoeZilla.Models.Product>
+
+@{
+    ViewData["Title"] = ViewData["CategoryName"];
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Sidebar Filters -->
+        <div class="col-lg-2 d-none d-lg-block sticky-top" style="height: 100vh; top: 100px; z-index: 1;">
+            <h4 class="fw-bold mb-4">@ViewData["CategoryName"]</h4>
+            
+            <div class="mb-4">
+                <h6 class="fw-bold">Sort By</h6>
+                <div class="d-flex flex-column gap-2">
+                    @{
+                        var query = Context.Request.Query["query"].ToString();
+                        var queryParam = !string.IsNullOrEmpty(query) ? $"&query={query}" : "";
+                    }
+                    <a href="?sortOrder=@queryParam" class="text-dark small @(ViewData["CurrentSort"] == null ? "fw-bold" : "")">Recommended</a>
+                    <a href="?sortOrder=price_asc@queryParam" class="text-dark small @(ViewData["CurrentSort"] == "price_asc" ? "fw-bold" : "")">Price: Low - High</a>
+                    <a href="?sortOrder=price_desc@queryParam" class="text-dark small @(ViewData["CurrentSort"] == "price_desc" ? "fw-bold" : "")">Price: High - Low</a>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                 <h6 class="fw-bold">Gender</h6>
+                 <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked>
+                    <label class="form-check-label small">Men</label>
+                 </div>
+                 <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked>
+                    <label class="form-check-label small">Women</label>
+                 </div>
+            </div>
+             <div class="mb-4">
+                 <h6 class="fw-bold">Price</h6>
+                 <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label small">Under $100</label>
+                 </div>
+                 <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label small">$100 - $150</label>
+                 </div>
+            </div>
+
+
+        </div>
+
+        <!-- Product Grid -->
+        <div class="col-lg-10">
+            <!-- Mobile Header -->
+            <div class="d-lg-none mb-3">
+                 <h2 class="fw-bold">@ViewData["CategoryName"]</h2>
+                 <div class="d-flex overflow-auto gap-2 pb-2">
+                     @{
+                        var mobileQuery = Context.Request.Query["query"].ToString();
+                        var mobileQueryParam = !string.IsNullOrEmpty(mobileQuery) ? $"&query={mobileQuery}" : "";
+                     }
+                     <a href="?sortOrder=price_asc@mobileQueryParam" class="btn btn-sm btn-outline-dark rounded-pill text-nowrap">Price: Low-High</a>
+                     <a href="?sortOrder=price_desc@mobileQueryParam" class="btn btn-sm btn-outline-dark rounded-pill text-nowrap">Price: High-Low</a>
+                 </div>
+            </div>
+            
+            <p class="text-muted">@Model.Count() Result(s)</p>
+
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+                @foreach (var item in Model)
+                {
+                    <div class="col">
+                        <div class="card h-100 position-relative">
+                            <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">
+                                <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" style="height: 250px; object-fit: cover; width: 100%;">
+                            </a>
+                            <div class="card-body">
+                                <h6 class="card-title text-danger fw-bold">Just In</h6>
+                                <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id" class="text-dark">
+                                    <h5 class="fw-bold mb-1">@item.Name</h5>
+                                </a>
+                                <p class="text-muted small mb-1">@(item.Description.Length > 25 ? item.Description.Substring(0, 25) + "..." : item.Description)</p>
+                                <p class="fw-bold mt-2">$@item.Price</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center mt-5">
+            <h4>Coming Soon!</h4>
+            <p>We are stocking up on the latest @ViewData["CategoryName"]. Check back later.</p>
+        </div>
+    }
+</div>

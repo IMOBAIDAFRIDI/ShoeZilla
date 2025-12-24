@@ -1,0 +1,188 @@
+
+@model ShoeZilla.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+    var relatedProducts = ViewData["RelatedProducts"] as IEnumerable<ShoeZilla.Models.Product>;
+}
+
+<div class="container-fluid p-0 mb-5">
+    <div class="row g-0">
+        <!-- left: Image (Hero) -->
+        <div class="col-lg-7 bg-light d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+            <img src="@Model.ImageUrl" class="img-fluid" alt="@Model.Name" style="max-height: 80vh; width: auto;">
+        </div>
+
+        <!-- right: Details (Sticky) -->
+        <div class="col-lg-5 p-5">
+            <div class="sticky-top" style="top: 100px;">
+                <h2 class="fw-bold mb-1">@Model.Name</h2>
+                <h5 class="text-muted mb-4">@Model.Category?.Name's Shoe</h5>
+                
+                <h4 class="mb-4">@Model.Price.ToString("C")</h4>
+
+                <!-- Size Selector Mockup -->
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="fw-bold small">Select Size</span>
+                        <a href="#" class="text-muted small text-decoration-none">Size Guide</a>
+                    </div>
+                    <div class="row row-cols-3 g-2">
+                        @for (int i = 7; i <= 12; i++)
+                        {
+                             <div class="col">
+                                 <button type="button" class="btn btn-outline-secondary w-100 rounded-0 py-2 size-btn" data-size="@i" onclick="selectSize(this, @i)">US @i</button>
+                             </div>
+                        }
+                    </div>
+                    <div id="sizeError" class="text-danger small mt-2" style="display:none;">Please select a size.</div>
+                </div>
+
+                <!-- Actions -->
+                <div class="d-grid gap-2 mb-4">
+                    <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline" id="addToCartForm">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <input type="hidden" name="size" id="selectedSize" value="" />
+                    <button type="submit" class="btn btn-warning btn-lg px-4 rounded-pill" onclick="return validateSize()">Add to Cart</button>
+                    <!-- Buy Now logic would similar, potentially redirected to cart then checkout -->
+                    <a href="#" onclick="buyNow()" class="btn btn-dark btn-lg px-4 rounded-pill ms-2">Buy Now</a>
+                </form>
+                    <button class="btn btn-outline-dark btn-lg rounded-pill py-3">Favorite <span class="ms-2">❤</span></button>
+                    @if(User.Identity.IsAuthenticated) {
+                         <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-link text-muted">Edit Product (Admin)</a>
+                    }
+                </div>
+
+                <!-- Description -->
+                <p class="mb-5" style="line-height: 1.6;">
+                    @Model.Description. The perfect blend of style and performance. Built for those who dare to lead. 
+                    Experience distinct comfort and iconic design.
+                </p>
+
+                <!-- Accordion -->
+                <div class="accordion accordion-flush" id="productAccordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne">
+                        Free Delivery and Returns
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse">
+                      <div class="accordion-body small">Free standard delivery on all orders. Returns are accepted within 30 days.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo">
+                        Reviews (@(ViewBag.Reviews?.Count ?? 0)) - ★ @(ViewBag.AverageRating?.ToString("0.0") ?? "0.0")
+                      </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse">
+                      <div class="accordion-body small">
+                          @if(ViewBag.Reviews != null && ((List<ShoeZilla.Models.Review>)ViewBag.Reviews).Any())
+                          {
+                              foreach(var review in (List<ShoeZilla.Models.Review>)ViewBag.Reviews)
+                              {
+                                  <div class="mb-3 border-bottom pb-2">
+                                      <div class="d-flex justify-content-between">
+                                          <span class="fw-bold">@review.ReviewerName</span>
+                                          <span class="text-warning">@string.Concat(Enumerable.Repeat("★", review.Rating))</span>
+                                      </div>
+                                      <p class="mb-1 text-muted">@review.Comment</p>
+                                      <small class="text-muted" style="font-size:0.75rem;">@review.CreatedAt.ToShortDateString()</small>
+                                  </div>
+                              }
+                          }
+                          else
+                          {
+                              <p class="text-muted">No reviews yet.</p>
+                          }
+
+                          <hr/>
+                          <h6 class="fw-bold">Write a Review</h6>
+                          <form asp-action="AddReview" method="post">
+                              <input type="hidden" name="productId" value="@Model.Id" />
+                              <div class="mb-2">
+                                  <label class="form-label">Rating</label>
+                                  <select name="rating" class="form-select form-select-sm">
+                                      <option value="5">★★★★★ (Excellent)</option>
+                                      <option value="4">★★★★☆ (Good)</option>
+                                      <option value="3">★★★☆☆ (Average)</option>
+                                      <option value="2">★★☆☆☆ (Poor)</option>
+                                      <option value="1">★☆☆☆☆ (Terrible)</option>
+                                  </select>
+                              </div>
+                              <div class="mb-2">
+                                  <textarea name="comment" class="form-control form-control-sm" rows="3" placeholder="Tell us what you think..." required></textarea>
+                              </div>
+                              <button type="submit" class="btn btn-dark btn-sm rounded-pill w-100">Submit Review</button>
+                          </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recommendations -->
+@if (relatedProducts != null && relatedProducts.Any())
+{
+    <div class="container mb-5">
+        <h3 class="fw-bold mb-4">You Might Also Like</h3>
+        <div class="row row-cols-2 row-cols-md-4 g-3">
+             @foreach (var item in relatedProducts)
+            {
+                <div class="col">
+                    <div class="card h-100 border-0">
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            <img src="@item.ImageUrl" class="card-img-top rounded" alt="@item.Name">
+                        </a>
+                        <div class="card-body px-0">
+                             <a asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none text-dark">
+                                <h6 class="fw-bold mb-1">@item.Name</h6>
+                            </a>
+                            <p class="text-muted small mb-1">@item.Category?.Name</p>
+                            <span class="fw-bold">@item.Price.ToString("C")</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<script>
+    function selectSize(btn, size) {
+        // Remove active class from all buttons
+        document.querySelectorAll('.size-btn').forEach(b => {
+             b.classList.remove('btn-secondary', 'text-white');
+             b.classList.add('btn-outline-secondary');
+        });
+        
+        // Add active class to clicked button
+        btn.classList.remove('btn-outline-secondary');
+        btn.classList.add('btn-secondary', 'text-white');
+
+        // Set hidden input value
+        document.getElementById('selectedSize').value = size;
+        document.getElementById('sizeError').style.display = 'none';
+    }
+
+    function validateSize() {
+        var size = document.getElementById('selectedSize').value;
+        if (!size) {
+            document.getElementById('sizeError').style.display = 'block';
+            return false;
+        }
+        return true;
+    }
+    
+    function buyNow() {
+        if (validateSize()) {
+             document.getElementById('addToCartForm').submit();
+        }
+    }
+</script>

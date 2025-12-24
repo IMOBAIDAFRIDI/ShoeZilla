@@ -1,0 +1,50 @@
+@model ShoeZilla.Models.User
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4 fw-bold">Create Account</h2>
+                    
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger">@ViewBag.Error</div>
+                    }
+
+                    <form asp-action="Register" method="post">
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Full Name</label>
+                            <input asp-for="FullName" class="form-control form-control-lg bg-light border-0" required />
+                            <span asp-validation-for="FullName" class="text-danger small"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Email Address</label>
+                            <input asp-for="Email" type="email" class="form-control form-control-lg bg-light border-0" required />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-muted">Password</label>
+                            <input asp-for="Password" type="password" class="form-control form-control-lg bg-light border-0" required />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+                        <!-- Hidden fields for irrelevant model properties -->
+                        <input type="hidden" asp-for="Salary" value="0" />
+                        <input type="hidden" asp-for="Designation" value="Customer" />
+
+                        <div class="d-grid mb-4">
+                            <button type="submit" class="btn btn-dark btn-lg rounded-pill">Sign Up</button>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-muted">Already have an account? </span>
+                            <a asp-action="Login" class="text-decoration-none fw-bold text-dark">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

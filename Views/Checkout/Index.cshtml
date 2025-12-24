@@ -1,0 +1,74 @@
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Checkout</h2>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card p-4 shadow-sm">
+                <form asp-action="PlaceOrder" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" name="customerName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" name="customerEmail" class="form-control" required>
+                    </div>
+                     <div class="mb-3">
+                        <label class="form-label">Shipping Address</label>
+                        <textarea name="address" class="form-control" rows="3" required></textarea>
+                    </div>
+                    
+                    <hr class="my-4">
+                    
+                    <hr class="my-4">
+
+                    <h5 class="mb-3">Payment Method</h5>
+                    <div class="my-3">
+                        <div class="form-check">
+                          <input id="credit" name="paymentMethod" type="radio" class="form-check-input" value="Card" checked onchange="togglePayment('card')">
+                          <label class="form-check-label" for="credit">Credit/Debit Card</label>
+                        </div>
+                        <div class="form-check">
+                          <input id="cod" name="paymentMethod" type="radio" class="form-check-input" value="COD" onchange="togglePayment('cod')">
+                          <label class="form-check-label" for="cod">Cash on Delivery</label>
+                        </div>
+                    </div>
+                    
+                    <div id="card-details">
+                        <h5 class="mb-3">Card Details</h5>
+                         <div class="mb-3">
+                            <label class="form-label">Card Number</label>
+                            <input type="text" class="form-control" placeholder="0000 0000 0000 0000">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Expiry</label>
+                                <input type="text" class="form-control" placeholder="MM/YY">
+                            </div>
+                             <div class="col-md-6 mb-3">
+                                <label class="form-label">CVC</label>
+                                <input type="text" class="form-control" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        function togglePayment(method) {
+                            var cardDetails = document.getElementById('card-details');
+                            if (method === 'cod') {
+                                cardDetails.style.display = 'none';
+                            } else {
+                                cardDetails.style.display = 'block';
+                            }
+                        }
+                    </script>
+
+                    <button type="submit" class="btn btn-primary w-100 btn-lg mt-3">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
