@@ -1,0 +1,635 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary-color: #1a1a1a;
+  --secondary-color: #666666;
+  --accent-color: #F25C24;
+  /* New Orange */
+  --bg-cream: #F5F2EB;
+  /* specific cream bg from image */
+  --bg-color: var(--bg-cream);
+  --light-gray: #f5f5f5;
+  --border-color: #e5e5e5;
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Sale Theme Specifics */
+  --accent-copper: #EFA985;
+  --bg-dark: #0f0f0f;
+  --text-gray: #d0d0d0;
+}
+
+html {
+  font-size: 16px;
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ... existing code ... */
+
+/* Advanced Featured Card Styling */
+.product-card {
+  border: 1px solid transparent;
+  transition: all 0.4s ease;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-copper);
+}
+
+.card-img-wrapper {
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
+  padding: 2rem;
+}
+
+.product-card:hover .card-img-wrapper {
+  background-color: #fff;
+}
+
+.card-title {
+  color: #333;
+  transition: color 0.3s;
+}
+
+.product-card:hover .card-title {
+  color: var(--accent-copper);
+}
+
+/* Gap Fixes */
+.jumbotron-custom {
+  margin-bottom: 0 !important;
+}
+
+section,
+.container-fluid {
+  margin-bottom: 0 !important;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  color: var(--primary-color);
+  opacity: 0.7;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 30px;
+  /* Pill shape */
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #333;
+  border-color: #333;
+  transform: translateY(-1px);
+}
+
+.btn-outline-dark {
+  border: 1.5px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Navbar */
+.navbar {
+  padding: 1rem 0;
+  background-color: #fff !important;
+  border-bottom: 1px solid transparent !important;
+  /* Cleaner look */
+}
+
+.navbar-brand {
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin: 0 0.5rem;
+}
+
+/* Cards */
+.card {
+  border: none;
+  transition: none;
+}
+
+.card-img-top {
+  border-radius: 4px;
+}
+
+.card-body {
+  padding: 1rem 0;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color) !important;
+  color: #fff;
+}
+
+footer h5 {
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+footer a {
+  color: #999;
+}
+
+footer a:hover {
+  color: #fff;
+  text-decoration: none;
+  opacity: 1;
+}
+
+/* Utilities */
+.jumbotron-custom {
+  border-radius: 0;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  min-height: 500px;
+}
+
+/* Sale Theme Specifics */
+/* Sale Theme Specifics */
+:root {
+  --accent-copper: #EFA985;
+  --bg-dark: #0f0f0f;
+  --text-gray: #d0d0d0;
+}
+
+body {
+  background-color: #fff !important;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Navbar Dark Theme */
+.navbar-dark-custom {
+  background-color: var(--bg-dark) !important;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.navbar-dark-custom .nav-link {
+  color: #fff !important;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  margin: 0 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.navbar-dark-custom .nav-link:hover {
+  color: var(--accent-copper) !important;
+}
+
+.navbar-dark-custom .nav-link.active-pill {
+  background-color: var(--accent-copper);
+  color: #000 !important;
+  border-radius: 20px;
+  padding: 6px 20px !important;
+  font-weight: 700;
+}
+
+.navbar-dark-custom .navbar-brand.active-pill-brand {
+  /* Inherit some active pill traits if desired, or just keep it distinct */
+  /* The user asked to apply "home wala section" to web name */
+  color: var(--accent-copper) !important;
+}
+
+.navbar-dark-custom .navbar-brand {
+  color: #fff !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+}
+
+.btn-pill-copper {
+  background-color: var(--accent-copper);
+  color: #111 !important;
+  border-radius: 20px;
+  padding: 6px 24px !important;
+  font-weight: 700 !important;
+}
+
+/* Hero Section */
+.hero-wrapper {
+  position: relative;
+  height: 90vh;
+  width: 100vw !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  left: 0;
+  right: 0;
+  background-image: url('../images/hero-shoe.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+/* Dark gradient overlay for text readability */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  /* Minimal overlay as requested */
+}
+
+/* Sale Card */
+.sale-card {
+  background-color: #000000;
+  color: #fff;
+  padding: 3rem;
+  width: 450px;
+  max-width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translateY(-50%);
+  z-index: 10;
+  /* No shadow mentioned in prompt, but good for separation */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Responsiveness for Sale Card */
+@media (max-width: 768px) {
+  .sale-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 90%;
+    margin: 2rem auto;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    max-width: none;
+  }
+}
+
+.sale-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 6rem;
+  line-height: 0.9;
+  color: var(--accent-copper);
+  margin-bottom: 0px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .sale-title {
+    font-size: 3rem;
+  }
+
+  .sale-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .sale-text {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.sale-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  color: #fff;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.sale-text {
+  font-size: 0.9rem;
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  border-left: none;
+  /* Removed border */
+  padding-left: 0;
+}
+
+.btn-shop-copper {
+  background-color: var(--accent-copper);
+  color: #fff;
+  /* White text as per typical design, though image shows white? checking.. Image shows White Text on Peach Button */
+  border: none;
+  border-radius: 30px;
+  padding: 12px 35px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-shop-copper:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Social Sidebar */
+.social-sidebar {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 10;
+}
+
+.social-icon {
+  width: 45px;
+  height: 45px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-copper);
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  color: #000;
+}
+
+/* Pointer Marker */
+.pointer-marker {
+  position: absolute;
+  bottom: 30%;
+  left: 55%;
+  /* Adjusted based on shoe position usually */
+  display: flex;
+  align-items: center;
+  z-index: 5;
+}
+
+.pointer-dot {
+  width: 50px;
+  height: 50px;
+  background: rgba(239, 169, 133, 0.4);
+  /* Transparent Copper */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  margin-right: 0;
+  /* Connects to line */
+}
+
+.pointer-inner {
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.pointer-line {
+  width: 120px;
+  height: 2px;
+  background: #fff;
+  transform: translateY(15px) rotate(15deg);
+  /* Angled line approximation */
+  transform-origin: left center;
+  margin-left: -5px;
+  /* Overlap */
+}
+
+/* Since the line is complex to do with one div, simplified version: */
+.pointer-marker {
+  /* Reset layout for easier absolute positioning if needed, but flex is fine */
+  gap: 10px;
+}
+
+.pointer-line {
+  width: 60px;
+  height: 2px;
+  background: #fff;
+  transform: none;
+  margin: 0;
+}
+
+.pointer-text {
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  background: transparent;
+  white-space: nowrap;
+}
+
+/* Slider Dots */
+.slider-dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: var(--accent-copper);
+  opacity: 1;
+}
+
+/* Featured Section */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #111;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.title-underline {
+  width: 60px;
+  height: 3px;
+  background-color: var(--accent-copper);
+  margin-bottom: 3rem;
+}
+
+.product-card {
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: transparent;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+/* Promo Banner */
+.promo-content {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.featured-parent-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* Global Mobile Optimizations */
+@media (max-width: 768px) {
+
+  /* Reduce padding for major containers */
+  .featured-parent-card {
+    padding: 1.5rem !important;
+  }
+
+  /* Adjust Section Titles */
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  /* Ensure no horizontal scroll */
+  .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  /* Better touch targets for buttons */
+  .btn,
+  .nav-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Product card spacing */
+  .product-card {
+    margin-bottom: 1rem;
+  }
+}

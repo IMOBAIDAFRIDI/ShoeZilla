@@ -1,0 +1,143 @@
+USE shoezilla;
+
+-- Clean existing products
+SET FOREIGN_KEY_CHECKS = 0;
+DELETE FROM order_items; -- Delete children first to be safe
+DELETE FROM products;    -- Then delete products
+ALTER TABLE products AUTO_INCREMENT = 1; -- Reset IDs
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- MEN (30 Products)
+INSERT INTO products (name, description, price, old_price, image_url, category, stock, is_featured) VALUES
+('Nike Air Jordan 1 Red', 'Iconic basketball sneaker with stylish design.', 149.99, 180.00, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/1.webp', 'Men', 50, 1),
+('Nike Baseball Cleats', 'Maximum traction and performance.', 79.99, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/1.webp', 'Men', 30, 0),
+('Puma Future Rider', 'Retro style and modern comfort.', 89.99, 100.00, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/1.webp', 'Men', 40, 0),
+('Sports Sneakers Off White', 'Fashionable choice for sports.', 119.99, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/1.webp', 'Men', 20, 0),
+('Off White Red Sneakers', 'Unique design and comfort.', 109.99, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/1.webp', 'Men', 25, 1),
+('Classic Air Jordan', 'High-performance features.', 155.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/2.webp', 'Men', 45, 0),
+('Pro Baseball Cleats', 'Stability and support.', 85.00, 95.00, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/2.webp', 'Men', 35, 0),
+('Puma Rider Blue', 'Casual everyday wear.', 95.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/2.webp', 'Men', 50, 0),
+('Athletic Sneakers', 'Bold and energetic touch.', 125.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/2.webp', 'Men', 30, 0),
+('Red Casual Kicks', 'Style for casual occasions.', 115.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/2.webp', 'Men', 40, 0),
+('Jordan 1 High', 'Favorite among sneaker enthusiasts.', 160.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/3.webp', 'Men', 25, 1),
+('Varsity Cleats', 'Designed for players.', 90.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/3.webp', 'Men', 30, 0),
+('Puma Rider Mix', 'Blend of materials.', 92.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/3.webp', 'Men', 45, 0),
+('Sporty White Red', 'Functionality meets style.', 122.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/3.webp', 'Men', 35, 0),
+('Urban Red Sneakers', 'Stand out from the crowd.', 112.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/3.webp', 'Men', 50, 0),
+('Jordan Retro', 'Timeless basketball style.', 165.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/4.webp', 'Men', 20, 0),
+('Field Cleats', 'Superior grip.', 88.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/4.webp', 'Men', 40, 0),
+('Puma Future Lite', 'Lightweight comfort.', 98.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/4.webp', 'Men', 35, 0),
+('Pro Active Sneakers', 'For the active lifestyle.', 128.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/4.webp', 'Men', 30, 0),
+('City Red Walker', 'Comfortable city walking.', 118.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/4.webp', 'Men', 25, 0),
+-- Repeating cycle for last 10
+('Nike AJ1 Special', 'Special edition colorway.', 152.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/1.webp', 'Men', 15, 0),
+('Elite Cleats', 'Professional grade.', 95.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/2.webp', 'Men', 20, 0),
+('Puma Street Rider', 'Streetwear essential.', 105.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/3.webp', 'Men', 40, 1),
+('Court Sneakers', 'Court ready performance.', 130.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/4.webp', 'Men', 30, 0),
+('Red Octobers Style', 'Vibrant and bold.', 125.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/1.webp', 'Men', 35, 0),
+('Jordan 1 Classic', 'Must have for collectors.', 170.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/2.webp', 'Men', 25, 0),
+('Turf Cleats', 'Great for turf fields.', 82.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/3.webp', 'Men', 45, 0),
+('Puma Fast Rider', 'Speed and style.', 92.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/4.webp', 'Men', 50, 0),
+('Runner Sneaker', 'Daily running shoe.', 115.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/1.webp', 'Men', 30, 0),
+('Red Fashion Kicks', 'Fashion forward.', 108.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/2.webp', 'Men', 40, 0);
+
+-- WOMEN (30 Products)
+INSERT INTO products (name, description, price, old_price, image_url, category, stock, is_featured) VALUES
+('Black & Brown Slipper', 'Comfortable and stylish slipper.', 19.99, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/black-&-brown-slipper/1.webp', 'Women', 50, 0),
+('Calvin Klein Heels', 'Elegant and sophisticated.', 79.99, 90.00, 'https://cdn.dummyjson.com/product-images/womens-shoes/calvin-klein-heel-shoes/1.webp', 'Women', 40, 1),
+('Golden Shoes', 'Glamorous choice for special occasions.', 49.99, 60.00, 'https://cdn.dummyjson.com/product-images/womens-shoes/golden-shoes-woman/1.webp', 'Women', 35, 1),
+('Pampi Casuals', 'Blend of comfort and style.', 29.99, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/1.webp', 'Women', 60, 0),
+('Vibrant Red Shoes', 'Make a bold statement.', 34.99, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/1.webp', 'Women', 25, 0),
+('Comfy Slippers', 'Sophistication for relaxation.', 22.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/black-&-brown-slipper/2.webp', 'Women', 45, 0),
+('CK Classic Heels', 'Classic design.', 85.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/calvin-klein-heel-shoes/2.webp', 'Women', 30, 0),
+('Gold Luxury', 'Adds a touch of luxury.', 55.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/golden-shoes-woman/2.webp', 'Women', 30, 0),
+('Pampi Everyday', 'Trendy and relaxed look.', 32.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/2.webp', 'Women', 55, 0),
+('Red Party Shoes', 'Pop of color.', 38.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/2.webp', 'Women', 40, 0),
+('Lounge Slippers', 'Perfect for home.', 21.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/black-&-brown-slipper/3.webp', 'Women', 50, 0),
+('Formal Heels', 'For formal occasions.', 82.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/calvin-klein-heel-shoes/3.webp', 'Women', 35, 0),
+('Golden Shine', 'Shine bright.', 52.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/golden-shoes-woman/3.webp', 'Women', 25, 0),
+('Pampi Walkers', 'Great for walking.', 30.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/3.webp', 'Women', 60, 0),
+('Red Stilettos', 'Stylish and chic.', 36.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/3.webp', 'Women', 20, 0),
+('Warm Slippers', 'Cozy feet.', 24.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/black-&-brown-slipper/4.webp', 'Women', 45, 0),
+('CK Black Heels', 'High quality materials.', 88.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/calvin-klein-heel-shoes/4.webp', 'Women', 30, 0),
+('Gold Party Pump', 'Party ready.', 58.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/golden-shoes-woman/4.webp', 'Women', 20, 0),
+('Pampi Comfort', 'All day comfort.', 28.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/4.webp', 'Women', 50, 0),
+('Red Night Out', 'Perfect for a night out.', 40.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/4.webp', 'Women', 35, 0),
+-- Cycle last 10
+('Home Slippers', 'Relax in style.', 20.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/black-&-brown-slipper/1.webp', 'Women', 40, 0),
+('Designer Heels', 'Top fashion brand.', 95.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/calvin-klein-heel-shoes/2.webp', 'Women', 25, 1),
+('Gold Elegant', 'Elegant choice.', 60.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/golden-shoes-woman/3.webp', 'Women', 30, 0),
+('Pampi Soft', 'Soft material.', 31.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/4.webp', 'Women', 55, 0),
+('Red Bold', 'Be bold.', 39.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/1.webp', 'Women', 45, 0),
+('Bedroom Slide', 'Easy to wear.', 18.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/black-&-brown-slipper/2.webp', 'Women', 50, 0),
+('Evening Heels', 'Perfect for dinner.', 89.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/calvin-klein-heel-shoes/3.webp', 'Women', 35, 0),
+('Gold Sparkle', 'Sparkle all night.', 54.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/golden-shoes-woman/4.webp', 'Women', 25, 0),
+('Pampi Daily', 'Daily essentials.', 29.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/1.webp', 'Women', 60, 0),
+('Red Passion', 'Passionate color.', 42.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/2.webp', 'Women', 30, 0);
+
+-- KIDS (30 Products - Using Pampi and Red Shoes and Cleats for variety)
+INSERT INTO products (name, description, price, old_price, image_url, category, stock, is_featured) VALUES
+('Kids Red Shoes', 'Bright red shoes for kids.', 29.99, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/1.webp', 'Kids', 50, 1),
+('Junior Cleats', 'Sports cleats for juniors.', 45.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/1.webp', 'Kids', 40, 0),
+('Kids Comfort', 'Comfortable daily wear.', 25.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/1.webp', 'Kids', 60, 0),
+('Little Jordan', 'Style for the little ones.', 80.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/1.webp', 'Kids', 20, 1),
+('Kids Puma', 'Mini version of the classic.', 40.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/1.webp', 'Kids', 35, 0),
+('Red Kids Sneakers', 'Fun and colorful.', 32.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/2.webp', 'Kids', 45, 0),
+('Youth Cleats', 'Ready for the game.', 48.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/2.webp', 'Kids', 30, 0),
+('Kids Casuals', 'Soft and easy.', 26.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/2.webp', 'Kids', 55, 0),
+('Active Kids', 'For active play.', 85.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/2.webp', 'Kids', 25, 0),
+('Junior Puma', 'Sporty look.', 42.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/2.webp', 'Kids', 40, 0),
+('Kids Party Shoes', 'For parties.', 35.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/3.webp', 'Kids', 40, 0),
+('Little League Cleats', 'Start them young.', 50.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/3.webp', 'Kids', 20, 0),
+('School Shoes', 'Great for school.', 28.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/3.webp', 'Kids', 60, 0),
+('Playground Kicks', 'Durable for play.', 75.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/3.webp', 'Kids', 30, 0),
+('Kids Trainer', 'Easy to run in.', 38.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/3.webp', 'Kids', 35, 0),
+('Red Fun', 'Shiny red.', 33.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/4.webp', 'Kids', 45, 0),
+('Field Ready', 'Grass grip.', 52.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/4.webp', 'Kids', 25, 0),
+('Soft Walk', 'Gentle on feet.', 24.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/4.webp', 'Kids', 50, 0),
+('Court Kids', 'Ball game ready.', 82.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/4.webp', 'Kids', 22, 0),
+('Small Steps', 'First steps in style.', 41.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/4.webp', 'Kids', 33, 0),
+('Festive Shoes', 'Holiday ready.', 36.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/1.webp', 'Kids', 40, 0),
+('Sport Star', 'Future athlete.', 49.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/1.webp', 'Kids', 30, 0),
+('Everyday Kid', 'Everyday wear.', 25.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/1.webp', 'Kids', 55, 0),
+('Pro Kid', 'Pro style.', 81.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/2.webp', 'Kids', 20, 0),
+('Fast Kid', 'Run fast.', 43.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/2.webp', 'Kids', 30, 0),
+('Ruby Red', 'Gem of a shoe.', 34.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/2.webp', 'Kids', 42, 0),
+('Cleat Elite', 'Top tier.', 51.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/3.webp', 'Kids', 28, 0),
+('Pampi Junior', 'Junior size.', 27.00, NULL, 'https://cdn.dummyjson.com/product-images/womens-shoes/pampi-shoes/3.webp', 'Kids', 48, 0),
+('Basket Kid', 'Basketball fan.', 79.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/4.webp', 'Kids', 24, 0),
+('Street Kid', 'Street smart.', 39.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/4.webp', 'Kids', 32, 0);
+
+-- JOGGERS (30 Products - Using Sports Sneakers and Pumas)
+INSERT INTO products (name, description, price, old_price, image_url, category, stock, is_featured) VALUES
+('Pro Jogger', 'High performance running shoe.', 120.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/1.webp', 'Joggers', 50, 1),
+('Speed Runner', 'Built for speed.', 90.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/1.webp', 'Joggers', 45, 0),
+('Red Flash', 'Flashy running shoe.', 110.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/1.webp', 'Joggers', 40, 0),
+('Marathon One', 'Long distance comfort.', 125.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/2.webp', 'Joggers', 35, 1),
+('Sprint Master', 'Short distance sprints.', 95.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/2.webp', 'Joggers', 42, 0),
+('Urban Jogger', 'City running.', 115.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/2.webp', 'Joggers', 38, 0),
+('Track Star', 'Track field ready.', 130.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/3.webp', 'Joggers', 30, 0),
+('Daily Run', 'Daily exercise.', 88.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/3.webp', 'Joggers', 50, 0),
+('Red Racer', 'Race day shoe.', 112.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/3.webp', 'Joggers', 35, 0),
+('Endurance Pro', 'Maximum endurance.', 135.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/4.webp', 'Joggers', 25, 1),
+('Lite Runner', 'Lightweight.', 92.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/4.webp', 'Joggers', 48, 0),
+('City Dash', 'Quick dash.', 118.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/4.webp', 'Joggers', 33, 0),
+-- Cycle again
+('Trail Blazer', 'Blaze the trails.', 122.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/1.webp', 'Joggers', 40, 0),
+('Puma Speed', 'Puma engineered.', 91.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/1.webp', 'Joggers', 44, 0),
+('Red Streak', 'Leave a streak.', 108.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/1.webp', 'Joggers', 39, 0),
+('Victory Run', 'Run to victory.', 128.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/2.webp', 'Joggers', 32, 0),
+('Rapid Rider', 'Ride the wind.', 96.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/2.webp', 'Joggers', 41, 0),
+('Metro Jogger', 'Metro style.', 114.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/2.webp', 'Joggers', 36, 0),
+('Olympia', 'Olympic dreams.', 132.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/3.webp', 'Joggers', 28, 0),
+('Easy Run', 'Easy going.', 89.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/3.webp', 'Joggers', 49, 0),
+('Crimson Run', 'Crimson tide.', 111.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/3.webp', 'Joggers', 34, 0),
+('Distance X', 'Go the distance.', 138.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/4.webp', 'Joggers', 24, 0),
+('Feather Lite', 'Feather weight.', 93.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/4.webp', 'Joggers', 47, 0),
+('Urban Dash', 'Dash through.', 117.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/4.webp', 'Joggers', 32, 0),
+('Alpha Run', 'Alpha male.', 121.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/1.webp', 'Joggers', 38, 0),
+('Beta Speed', 'Beta test.', 90.50, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/1.webp', 'Joggers', 43, 0),
+('Gamma Red', 'Gamma raiders.', 109.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/1.webp', 'Joggers', 37, 0),
+('Delta Force', 'Delta run.', 127.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/2.webp', 'Joggers', 31, 0),
+('Omega Sprint', 'Omega fast.', 94.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/puma-future-rider-trainers/2.webp', 'Joggers', 40, 0),
+('Zeta Jogger', 'Zeta run.', 113.00, NULL, 'https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-red/2.webp', 'Joggers', 35, 0);
